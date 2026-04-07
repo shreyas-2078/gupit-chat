@@ -37,11 +37,11 @@ const AppContent = () => {
   // लॉगिन सिस्टम
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "Shreyas@123") {
+    if (password === "Babdi@123") {
       setUser("Babdi");
       setError("");
       setShowSecretAuth(false);
-    } else if (password === "Shreyas@1234") {
+    } else if (password === "Dora@123") {
       setUser("Dora");
       setError("");
       setShowSecretAuth(false);
