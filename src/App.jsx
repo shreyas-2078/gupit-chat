@@ -240,31 +240,83 @@ const AppContent = () => {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8 pt-24 pb-28 flex flex-col gap-2 items-start bg-white selection:bg-slate-900 selection:text-white">
-          <div className="text-[10px] text-slate-200 mb-12 border-l border-slate-100 pl-4 font-bold uppercase italic tracking-[0.2em] opacity-40">
-            [SYS] Kernel handshake success... <br />
-            [SYS] Tunnel protocol established. <br />
-            [SYS] Buffer encryption active.
+        <div className="flex-1 overflow-hidden grid lg:grid-cols-[1fr_320px] pt-16 pb-24 bg-white">
+          {/* Main Chat Area */}
+          <div className="flex-1 overflow-y-auto p-8 flex flex-col gap-2 items-start selection:bg-slate-900 selection:text-white border-r border-slate-50/50">
+            <div className="text-[10px] text-slate-200 mb-8 border-l border-slate-100 pl-4 font-bold uppercase italic tracking-[0.2em] opacity-40">
+              [SYS] Kernel handshake success... <br />
+              [SYS] Tunnel protocol established. <br />
+              [SYS] Buffer encryption active.
+            </div>
+            
+            {messages.map((msg) => (
+              <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
+                <div className="flex items-baseline gap-4">
+                  <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-100' : 'text-slate-50'}`}>
+                    [{formatTime(msg.timestamp)}]
+                  </span>
+                  <span className={`font-bold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-200' : 'text-slate-100'} group-hover:text-slate-400 transition-colors`}>
+                    [{msg.senderId}]:
+                  </span>
+                  <span className={`flex-1 break-words font-normal transition-all duration-500 
+                    text-slate-50 group-hover:text-slate-900
+                    ${msg.senderId === user ? 'border-l border-slate-50/50 pl-2' : ''}`}>
+                    {msg.text}
+                  </span>
+                </div>
+              </div>
+            ))}
+            <div ref={scrollRef} className="h-8" />
           </div>
-          
-          {messages.map((msg) => (
-            <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
-              <div className="flex items-baseline gap-4">
-                <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-100' : 'text-slate-50'}`}>
-                  [{formatTime(msg.timestamp)}]
-                </span>
-                <span className={`font-bold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-200' : 'text-slate-100'} group-hover:text-slate-400 transition-colors`}>
-                  [{msg.senderId}]:
-                </span>
-                <span className={`flex-1 break-words font-normal transition-all duration-500 
-                  text-slate-50 group-hover:text-slate-900
-                  ${msg.senderId === user ? 'border-l border-slate-50/50 pl-2' : ''}`}>
-                  {msg.text}
-                </span>
+
+          {/* Technical Operations Panel (Light) */}
+          <aside className="hidden lg:flex flex-col bg-slate-50/50 p-0 overflow-hidden border-l border-slate-100 font-mono shadow-sm">
+            <div className="bg-slate-100/50 px-4 py-2 border-b border-slate-100 flex items-center justify-between">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+              </div>
+              <span className="text-[9px] text-slate-400 font-bold tracking-widest uppercase">SYMBOLS_STREAM.JS</span>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-6 text-[10px] leading-relaxed selection:bg-slate-200">
+              <div className="space-y-1 opacity-60">
+                <div className="text-slate-400 italic">// INITIALIZING_VAULT_SOURCE</div>
+                <div><span className="text-pink-500 font-bold">const</span> <span className="text-slate-800">kernel</span> = <span className="text-emerald-600">"v2.04"</span>;</div>
+                <div className="h-2" />
+                <div><span className="text-blue-600 font-bold">&lt;!DOCTYPE html&gt;</span></div>
+                <div><span className="text-blue-600 font-bold">&lt;html</span> <span className="text-emerald-600">lang</span>=<span className="text-pink-500">"en"</span><span className="text-blue-600 font-bold">&gt;</span></div>
+                <div className="pl-4 text-blue-600">&lt;head&gt;</div>
+                <div className="pl-8 text-blue-600">&lt;title&gt;<span className="text-slate-700 font-bold">StackProtocol_Vault</span>&lt;/title&gt;</div>
+                <div className="pl-8 text-blue-600">&lt;meta <span className="text-emerald-400">charset</span>=<span className="text-pink-500">"utf-8"</span> /&gt;</div>
+                <div className="pl-8 h-2" />
+                <div className="pl-8 text-blue-600">&lt;script&gt;</div>
+                <div className="pl-12 text-slate-500">var <span className="text-slate-800">mytag</span> = mytag || &#123;&#125;;</div>
+                <div className="pl-12 text-slate-500">mytag.<span className="text-pink-500">cmd</span> = mytag.cmd || [];</div>
+                <div className="pl-12 text-slate-500">(<span className="text-pink-500">function</span>() &#123;</div>
+                <div className="pl-16 text-slate-500">var <span className="text-slate-800">gads</span> = document.<span className="text-blue-600">createElement</span>(<span className="text-pink-500">'script'</span>);</div>
+                <div className="pl-16 text-slate-500">gads.<span className="text-slate-800">async</span> = <span className="text-pink-500">true</span>;</div>
+                <div className="pl-16 text-slate-500">gads.<span className="text-slate-800">type</span> = <span className="text-pink-500">'text/script'</span>;</div>
+                <div className="pl-16 text-slate-500">var <span className="text-slate-800">useSSL</span> = <span className="text-pink-500">'https:'</span> == document.<span className="text-blue-600">location</span>.protocol;</div>
+                <div className="pl-16 text-slate-500">gads.<span className="text-slate-800">src</span> = (useSSL ? <span className="text-pink-500">'https:'</span> : <span className="text-pink-500">'http:'</span>);</div>
+                <div className="pl-16 text-slate-500">var <span className="text-slate-800">node</span> = document.<span className="text-blue-600">getElementsByTagName</span>(<span className="text-pink-500">'script'</span>)[0];</div>
+                <div className="pl-16 text-slate-500">node.<span className="text-slate-800">parentNode</span>.<span className="text-blue-600">insertBefore</span>(gads, node);</div>
+                <div className="pl-12 text-slate-500">&#125;)();</div>
+                <div className="pl-8 text-blue-600">&lt;/script&gt;</div>
+                <div className="pl-4 text-blue-600">&lt;/head&gt;</div>
+                <div><span className="text-blue-600">&lt;/html&gt;</span></div>
+              </div>
+
+              <div className="mt-12 p-4 bg-slate-50 border border-slate-100 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] font-black text-slate-300 tracking-[0.2em] uppercase">Security_Auth</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                </div>
+                <div className="text-[9px] text-slate-400 font-bold tracking-tight italic">// HANDSHAKE_SUCCESSFUL</div>
               </div>
             </div>
-          ))}
-          <div ref={scrollRef} className="h-8" />
+          </aside>
         </div>
 
         <footer className="fixed bottom-0 w-full p-4 bg-white/80 backdrop-blur-lg border-t border-slate-50">
