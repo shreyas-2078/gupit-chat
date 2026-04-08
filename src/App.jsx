@@ -104,8 +104,8 @@ const AppContent = () => {
   const Branding = () => (
     <div className="flex items-center gap-2">
       <div className="bg-slate-900 p-1.5 rounded-lg"><Terminal className="w-4 h-4 text-emerald-400" /></div>
-      <span className="font-mono font-black text-lg tracking-tighter text-slate-800 uppercase">
-        Stack<span className="text-slate-400">Protocol</span>
+      <span className="font-mono font-bold text-lg tracking-tight text-slate-800 uppercase">
+        Stack<span className="text-slate-400 font-medium">Protocol</span>
       </span>
     </div>
   );
@@ -137,7 +137,7 @@ const AppContent = () => {
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 py-20 grid lg:grid-cols-[1fr_300px] gap-20">
         <section className="space-y-16">
           <div className="space-y-8">
-            <h1 className="text-6xl md:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter">
+            <h1 className="text-6xl md:text-8xl font-extrabold text-slate-900 leading-[0.9] tracking-tight">
               DECENTRALIZED<br/>ARCHITECTURE<br/><span className="text-slate-200">PROTOCOL.</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl font-medium leading-relaxed">
@@ -160,7 +160,7 @@ const AppContent = () => {
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 py-12 grid lg:grid-cols-[1fr_300px] gap-16">
         <article className="bg-white p-12 rounded-xl border border-slate-200 shadow-sm space-y-8">
           <div>
-            <h1 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">{title}</h1>
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight uppercase">{title}</h1>
             <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-1">// {subtitle}</p>
           </div>
           <div className="h-px bg-slate-100 w-full" />
@@ -201,11 +201,11 @@ const AppContent = () => {
           <div className="bg-slate-900 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl">
              <Lock className="w-8 h-8 text-emerald-400" />
           </div>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tighter uppercase mb-2">Initialize Auth</h2>
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase mb-2">Initialize Auth</h2>
           <p className="text-[10px] text-slate-400 font-mono uppercase tracking-[0.2em] mb-10">Verification Tunnel v2.4</p>
           <form onSubmit={handleLogin} className="space-y-6">
             <input type="password" autoFocus value={password} onChange={(e) => setPassword(e.target.value)} placeholder="ACCESS_KEY" className="w-full bg-slate-50 border-2 border-slate-50 rounded-xl px-6 py-4 outline-none focus:border-slate-900 transition-all text-center font-mono font-bold tracking-[0.3em]" />
-            <button className="w-full bg-slate-900 text-white font-mono font-black py-4 rounded-xl hover:bg-slate-800 transition-all text-xs uppercase tracking-widest">Connect</button>
+            <button className="w-full bg-slate-900 text-white font-mono font-bold py-4 rounded-xl hover:bg-slate-800 transition-all text-xs uppercase tracking-widest">Connect</button>
           </form>
         </div>
       </div>
@@ -215,33 +215,33 @@ const AppContent = () => {
   if (user) {
     return (
       <div className="flex flex-col fixed inset-0 bg-white text-slate-900 antialiased overflow-hidden z-50 font-mono text-xs leading-relaxed">
-        <header className="bg-slate-50 border-b border-slate-100 py-3 px-6 fixed top-0 w-full z-20 flex items-center justify-between">
+        <header className="bg-slate-50/50 backdrop-blur-md border-b border-slate-100 py-3 px-6 fixed top-0 w-full z-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button onClick={() => setUser(null)} className="p-2 rounded-lg text-slate-400 hover:bg-slate-200 transition-all"><ArrowLeft className="w-4 h-4" /></button>
             <div className="h-6 w-px bg-slate-200 mx-1" />
-            <span className="font-black text-slate-800 tracking-tighter uppercase transition-opacity hover:opacity-50 cursor-default">
+            <span className="font-bold text-slate-800 tracking-tight uppercase transition-opacity hover:opacity-50 cursor-default">
               Live_Console_Session.sh <span className="text-slate-300 font-normal ml-2">[{user}]</span>
             </span>
           </div>
           <div className="flex items-center gap-6">
             <button 
               onClick={clearAllMessages}
-              className="group flex items-center gap-2 text-slate-300 hover:text-red-500 transition-all"
+              className="group flex items-center gap-2 text-slate-300 hover:text-red-400 transition-all"
               title="Purge Console Data"
             >
               <Trash2 className="w-4 h-4" />
-              <span className="text-[9px] font-black uppercase tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-all">Purge_Data</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-all">Purge_Data</span>
             </button>
             <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 bg-slate-200 rounded-full" />
-              <div className="w-2.5 h-2.5 bg-slate-200 rounded-full" />
-              <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse" />
+              <div className="w-2.5 h-2.5 bg-slate-100 rounded-full" />
+              <div className="w-2.5 h-2.5 bg-slate-100 rounded-full" />
+              <div className="w-2.5 h-2.5 bg-emerald-400/50 rounded-full animate-pulse" />
             </div>
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8 pt-24 pb-28 flex flex-col gap-1.5 items-start bg-white selection:bg-slate-900 selection:text-white">
-          <div className="text-[10px] text-slate-200 mb-12 border-l border-slate-100 pl-4 font-bold uppercase italic tracking-widest opacity-30">
+        <div className="flex-1 overflow-y-auto p-8 pt-24 pb-28 flex flex-col gap-2 items-start bg-white selection:bg-slate-900 selection:text-white">
+          <div className="text-[10px] text-slate-200 mb-12 border-l border-slate-100 pl-4 font-bold uppercase italic tracking-[0.2em] opacity-40">
             [SYS] Kernel handshake success... <br />
             [SYS] Tunnel protocol established. <br />
             [SYS] Buffer encryption active.
@@ -250,16 +250,15 @@ const AppContent = () => {
           {messages.map((msg) => (
             <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
               <div className="flex items-baseline gap-4">
-                <span className={`whitespace-nowrap text-[9px] font-bold select-none ${msg.senderId === 'Babdi' ? 'text-slate-700' : 'text-slate-400'}`}>
+                <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-100' : 'text-slate-50'}`}>
                   [{formatTime(msg.timestamp)}]
                 </span>
-                <span className={`font-black uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-700' : 'text-slate-400'}`}>
+                <span className={`font-bold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-200' : 'text-slate-100'} group-hover:text-slate-400 transition-colors`}>
                   [{msg.senderId}]:
                 </span>
-                <span className={`flex-1 break-words font-medium transition-all duration-300 
-                  ${msg.senderId === 'Babdi' ? 'text-slate-900' : 'text-slate-500'} 
-                  hover:text-black active:text-black 
-                  ${msg.senderId === user ? 'border-l-2 border-slate-100 pl-2' : ''}`}>
+                <span className={`flex-1 break-words font-normal transition-all duration-500 
+                  text-slate-50 group-hover:text-slate-900
+                  ${msg.senderId === user ? 'border-l border-slate-50/50 pl-2' : ''}`}>
                   {msg.text}
                 </span>
               </div>
@@ -268,13 +267,20 @@ const AppContent = () => {
           <div ref={scrollRef} className="h-8" />
         </div>
 
-        <footer className="absolute bottom-0 w-full p-4 bg-white border-t border-slate-50">
-          <form onSubmit={sendMessage} className="max-w-6xl mx-auto flex items-center gap-3 bg-slate-50 border border-slate-100 p-1.5 rounded-xl pl-5 focus-within:border-slate-300 transition-all">
-            <span className="text-slate-200 font-black tracking-tighter">$</span>
-            <input type="text" value={inputText} autoFocus onChange={(e) => setInputText(e.target.value)} placeholder="INJECT_DATA..." className="flex-1 bg-transparent py-3 outline-none text-slate-800 text-sm font-bold tracking-tight placeholder:text-slate-200" />
-            <button type="submit" disabled={!inputText.trim()} className="bg-slate-900 text-white p-3 rounded-lg transition-all disabled:opacity-10 active:scale-90"><Send className="w-5 h-5" /></button>
+        <footer className="fixed bottom-0 w-full p-4 bg-white/80 backdrop-blur-lg border-t border-slate-50">
+          <form onSubmit={sendMessage} className="max-w-6xl mx-auto flex items-center gap-3 bg-slate-50/50 border border-slate-100 p-1.5 rounded-xl pl-5 focus-within:border-slate-200 transition-all">
+            <span className="text-slate-100 font-medium tracking-tighter select-none">$</span>
+            <input 
+              type="text" 
+              value={inputText} 
+              autoFocus 
+              onChange={(e) => setInputText(e.target.value)} 
+              placeholder="INJECT_DATA..." 
+              className="flex-1 bg-transparent py-3 outline-none text-slate-100 focus:text-slate-400 text-sm font-normal tracking-tight placeholder:text-slate-100/50 transition-colors" 
+            />
+            <button type="submit" disabled={!inputText.trim()} className="bg-slate-900/10 hover:bg-slate-900 text-slate-300 hover:text-white p-3 rounded-lg transition-all disabled:opacity-0 active:scale-95"><Send className="w-5 h-5" /></button>
           </form>
-          <div className="text-[9px] text-center mt-3 text-slate-200 font-bold uppercase tracking-[0.4em] opacity-50">StackProtocol // Kernel-v2.04</div>
+          <div className="text-[9px] text-center mt-3 text-slate-200 font-bold uppercase tracking-[0.4em] opacity-30 select-none">StackProtocol // Kernel-v2.04</div>
         </footer>
       </div>
     );
