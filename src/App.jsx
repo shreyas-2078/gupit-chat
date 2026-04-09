@@ -19,7 +19,7 @@ import {
   Send, Lock, MessageSquare, CheckCheck, Clock, 
   BookOpen, Code, Terminal, Layers, Globe, ShieldCheck, 
   HelpCircle, ChevronRight, Settings, Search, ArrowLeft,
-  FileText, Cpu, Database, Layout, Command, Share2, User, Trash2
+  FileText, Cpu, Database, Layout, Command, Share2, User, Trash2, Plus, Bell
 } from 'lucide-react';
 
 const AppContent = () => {
@@ -30,6 +30,8 @@ const AppContent = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const scrollRef = useRef(null);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const lastLoggedMessageCount = useRef(0);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,6 +79,20 @@ const AppContent = () => {
     }
   }, [messages]);
 
+  // Unread messages tracking
+  useEffect(() => {
+    if (messages.length > lastLoggedMessageCount.current) {
+      if (lastLoggedMessageCount.current > 0) {
+        const addedMessages = messages.slice(lastLoggedMessageCount.current);
+        const incoming = addedMessages.filter(m => m.senderId !== user).length;
+        if (incoming > 0) {
+          setUnreadCount(prev => prev + incoming);
+        }
+      }
+    }
+    lastLoggedMessageCount.current = messages.length;
+  }, [messages, user]);
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (inputText.trim() === "") return;
@@ -91,6 +107,7 @@ const AppContent = () => {
   const clearAllMessages = async () => {
     if (window.confirm("Purge all data from this console? This cannot be undone.")) {
       await remove(ref(database, 'messages'));
+      setUnreadCount(0);
     }
   };
 
@@ -232,6 +249,16 @@ const AppContent = () => {
               <Trash2 className="w-4 h-4" />
               <span className="text-[9px] font-bold uppercase tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-all">Purge_Data</span>
             </button>
+
+            {unreadCount > 0 && (
+              <div 
+                onClick={() => setUnreadCount(0)}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-lg border border-emerald-100 cursor-pointer animate-bounce hover:bg-emerald-100 transition-all font-mono"
+              >
+                <Plus className="w-3 h-3 font-bold" />
+                <span className="text-[10px] font-black tracking-tighter">{unreadCount} MSG_INBOUND</span>
+              </div>
+            )}
             <div className="flex gap-1.5">
               <div className="w-2.5 h-2.5 bg-slate-100 rounded-full" />
               <div className="w-2.5 h-2.5 bg-slate-100 rounded-full" />
@@ -326,9 +353,10 @@ const AppContent = () => {
               type="text" 
               value={inputText} 
               autoFocus 
+              onFocus={() => setUnreadCount(0)}
               onChange={(e) => setInputText(e.target.value)} 
               placeholder="INJECT_DATA..." 
-              className="flex-1 bg-transparent py-3 outline-none text-slate-100 focus:text-slate-400 text-sm font-normal tracking-tight placeholder:text-slate-100/50 transition-colors" 
+              className="flex-1 bg-transparent py-3 outline-none text-slate-100 focus:text-slate-900 text-sm font-normal tracking-tight placeholder:text-slate-100/50 transition-colors" 
             />
             <button type="submit" disabled={!inputText.trim()} className="bg-slate-900/10 hover:bg-slate-900 text-slate-300 hover:text-white p-3 rounded-lg transition-all disabled:opacity-0 active:scale-95"><Send className="w-5 h-5" /></button>
           </form>
