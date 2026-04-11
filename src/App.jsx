@@ -279,15 +279,15 @@ const AppContent = () => {
             {messages.map((msg) => (
               <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
                 <div className="flex items-baseline gap-4">
-                  <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-100' : 'text-slate-50'}`}>
+                  <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-300' : 'text-slate-200'}`}>
                     [{formatTime(msg.timestamp)}]
                   </span>
-                  <span className={`font-bold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-200' : 'text-slate-100'} group-hover:text-slate-400 transition-colors`}>
+                  <span className={`font-semibold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-400' : 'text-slate-300'} group-hover:text-slate-500 transition-colors`}>
                     [{msg.senderId}]:
                   </span>
-                  <span className={`flex-1 break-words font-normal transition-all duration-500 
-                    text-slate-50 group-hover:text-slate-900
-                    ${msg.senderId === user ? 'border-l border-slate-50/50 pl-2' : ''}`}>
+                  <span className={`flex-1 break-words font-medium transition-all duration-500 
+                    text-slate-400 group-hover:text-slate-600
+                    ${msg.senderId === user ? 'border-l border-slate-100 pl-2' : ''}`}>
                     {msg.text}
                   </span>
                 </div>
@@ -348,7 +348,7 @@ const AppContent = () => {
 
         <footer className="fixed bottom-0 w-full p-4 bg-white/80 backdrop-blur-lg border-t border-slate-50">
           <form onSubmit={sendMessage} className="max-w-6xl mx-auto flex items-center gap-3 bg-slate-50/50 border border-slate-100 p-1.5 rounded-xl pl-5 focus-within:border-slate-200 transition-all">
-            <span className="text-slate-100 font-medium tracking-tighter select-none">$</span>
+            <span className="text-slate-300 font-medium tracking-tighter select-none">$</span>
             <input 
               type="text" 
               value={inputText} 
@@ -356,7 +356,7 @@ const AppContent = () => {
               onFocus={() => setUnreadCount(0)}
               onChange={(e) => setInputText(e.target.value)} 
               placeholder="INJECT_DATA..." 
-              className="flex-1 bg-transparent py-3 outline-none text-slate-100 focus:text-slate-900 text-sm font-normal tracking-tight placeholder:text-slate-100/50 transition-colors" 
+              className="flex-1 bg-transparent py-3 outline-none text-slate-400 focus:text-slate-600 text-sm font-medium tracking-tight placeholder:text-slate-300 transition-colors" 
             />
             <button type="submit" disabled={!inputText.trim()} className="bg-slate-900/10 hover:bg-slate-900 text-slate-300 hover:text-white p-3 rounded-lg transition-all disabled:opacity-0 active:scale-95"><Send className="w-5 h-5" /></button>
           </form>
