@@ -279,7 +279,7 @@ const AppContent = () => {
             {messages.map((msg) => (
               <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
                 <div className="flex items-baseline gap-4">
-                  <span className={`whitespace-nowrap text-[9px] font-medium select-none transition-all duration-500 opacity-[0.15] group-hover:opacity-100 ${msg.senderId === user ? 'text-slate-500' : 'text-slate-400'}`}>
+                  <span className={`whitespace-nowrap text-[9px] font-bold select-none transition-all duration-500 text-slate-300 group-hover:text-slate-500`}>
                     [{formatTime(msg.timestamp)}]
                   </span>
                   <span className={`font-semibold uppercase text-[10px] tracking-tight select-none transition-all duration-500 opacity-[0.05] group-hover:opacity-100 ${msg.senderId === 'Babdi' ? 'text-slate-600' : 'text-slate-500'}`}>
