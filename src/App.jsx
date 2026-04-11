@@ -270,7 +270,7 @@ const AppContent = () => {
         <div className="flex-1 overflow-hidden grid lg:grid-cols-[1fr_320px] pt-16 pb-24 bg-white">
           {/* Main Chat Area */}
           <div className="flex-1 overflow-y-auto p-8 flex flex-col gap-2 items-start selection:bg-slate-900 selection:text-white border-r border-slate-50/50">
-            <div className="text-[10px] text-slate-200 mb-8 border-l border-slate-100 pl-4 font-bold uppercase italic tracking-[0.2em] opacity-40">
+            <div className="text-[10px] text-slate-200 mb-8 border-l border-slate-50 pl-4 font-bold uppercase italic tracking-[0.2em] opacity-[0.03] hover:opacity-100 transition-opacity duration-1000">
               [SYS] Kernel handshake success... <br />
               [SYS] Tunnel protocol established. <br />
               [SYS] Buffer encryption active.
@@ -279,15 +279,15 @@ const AppContent = () => {
             {messages.map((msg) => (
               <div key={msg.id} className="flex flex-col w-full py-0.5 group transition-all">
                 <div className="flex items-baseline gap-4">
-                  <span className={`whitespace-nowrap text-[9px] font-medium select-none ${msg.senderId === user ? 'text-slate-300' : 'text-slate-200'}`}>
+                  <span className={`whitespace-nowrap text-[9px] font-medium select-none transition-all duration-500 opacity-[0.03] group-hover:opacity-40 ${msg.senderId === user ? 'text-slate-400' : 'text-slate-300'}`}>
                     [{formatTime(msg.timestamp)}]
                   </span>
-                  <span className={`font-semibold uppercase text-[10px] tracking-tight select-none ${msg.senderId === 'Babdi' ? 'text-slate-400' : 'text-slate-300'} group-hover:text-slate-500 transition-colors`}>
+                  <span className={`font-semibold uppercase text-[10px] tracking-tight select-none transition-all duration-500 opacity-[0.05] group-hover:opacity-100 ${msg.senderId === 'Babdi' ? 'text-slate-600' : 'text-slate-500'}`}>
                     [{msg.senderId}]:
                   </span>
-                  <span className={`flex-1 break-words font-medium transition-all duration-500 
-                    text-slate-400 group-hover:text-slate-600
-                    ${msg.senderId === user ? 'border-l border-slate-100 pl-2' : ''}`}>
+                  <span className={`flex-1 break-words font-medium transition-all duration-700 
+                    opacity-[0.02] group-hover:opacity-100 text-slate-500
+                    ${msg.senderId === user ? 'border-l border-slate-50 pl-2' : ''}`}>
                     {msg.text}
                   </span>
                 </div>
@@ -348,7 +348,7 @@ const AppContent = () => {
 
         <footer className="fixed bottom-0 w-full p-4 bg-white/80 backdrop-blur-lg border-t border-slate-50">
           <form onSubmit={sendMessage} className="max-w-6xl mx-auto flex items-center gap-3 bg-slate-50/50 border border-slate-100 p-1.5 rounded-xl pl-5 focus-within:border-slate-200 transition-all">
-            <span className="text-slate-300 font-medium tracking-tighter select-none">$</span>
+            <span className="text-slate-900 opacity-[0.02] font-medium tracking-tighter select-none">$</span>
             <input 
               type="text" 
               value={inputText} 
@@ -356,7 +356,7 @@ const AppContent = () => {
               onFocus={() => setUnreadCount(0)}
               onChange={(e) => setInputText(e.target.value)} 
               placeholder="INJECT_DATA..." 
-              className="flex-1 bg-transparent py-3 outline-none text-slate-400 focus:text-slate-600 text-sm font-medium tracking-tight placeholder:text-slate-300 transition-colors" 
+              className="flex-1 bg-transparent py-3 outline-none text-slate-400 opacity-[0.03] focus:opacity-100 hover:opacity-20 text-sm font-medium tracking-tight placeholder:text-slate-100 transition-all duration-500" 
             />
             <button type="submit" disabled={!inputText.trim()} className="bg-slate-900/10 hover:bg-slate-900 text-slate-300 hover:text-white p-3 rounded-lg transition-all disabled:opacity-0 active:scale-95"><Send className="w-5 h-5" /></button>
           </form>
