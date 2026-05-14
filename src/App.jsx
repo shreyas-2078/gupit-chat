@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  BrowserRouter as Router, 
-  Routes, 
-  Route, 
-  Link, 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
   useNavigate,
   useLocation
 } from 'react-router-dom';
-import { 
-  ref, 
-  push, 
-  onValue, 
+import {
+  ref,
+  push,
+  onValue,
   remove,
-  serverTimestamp 
+  serverTimestamp
 } from "firebase/database";
 import { database } from "./firebase";
-import { 
-  Send, Lock, Terminal, 
+import {
+  Send, Lock, Terminal,
   HelpCircle, Search, ArrowLeft,
   Trash2, Plus
 } from 'lucide-react';
@@ -41,8 +41,8 @@ const AppContent = () => {
 
   // Room config
   const roomConfig = roomParam === '2'
-    ? { firebasePath: 'messages/room2', users: { '2025': 'Dora', '1234': 'Babdi' }, label: 'CHANNEL_2', isRoom2: true }
-    : { firebasePath: 'messages/room1', users: { '9502': 'kitcat', '9325': 'pagal' }, label: 'CHANNEL_1', isRoom2: false };
+    ? { firebasePath: 'messages/room2', users: { 'Dora@123': 'Dora', 'Babdi@123': 'Babdi' }, label: 'CHANNEL_2', isRoom2: true }
+    : { firebasePath: 'messages/room1', users: { 'kitcat@123': 'kitcat', 'pagal@123': 'pagal' }, label: 'CHANNEL_1', isRoom2: false };
 
   // Auto show auth जेव्हा room param असेल
   useEffect(() => {
@@ -122,7 +122,7 @@ const AppContent = () => {
   const formatTime = (ts) => {
     if (!ts) return '';
     const d = new Date(ts);
-    return `${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
+    return `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
   };
 
   // ── AUTH MODAL ──────────────────────────────────────────────────
@@ -328,7 +328,7 @@ const AppContent = () => {
         <section className="space-y-16">
           <div className="space-y-8">
             <h1 className="text-6xl md:text-8xl font-extrabold text-slate-900 leading-[0.9] tracking-tight">
-              DECENTRALIZED<br/>ARCHITECTURE<br/><span className="text-slate-200">PROTOCOL.</span>
+              DECENTRALIZED<br />ARCHITECTURE<br /><span className="text-slate-200">PROTOCOL.</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl font-medium leading-relaxed">
               Low-latency networking layer for high-availability clusters and secure distributed systems. Engineered for minimum footprint and maximum integrity.
