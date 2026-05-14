@@ -42,7 +42,7 @@ const AppContent = () => {
   // Room config
   const roomConfig = roomParam === '2'
     ? { firebasePath: 'messages/room2', users: { '2025': 'Dora', '1234': 'Babdi' }, label: 'CHANNEL_2', isRoom2: true }
-    : { firebasePath: 'messages/room1', users: { '9325': 'kitkat', '8600': 'rohit' }, label: 'CHANNEL_1', isRoom2: false };
+    : { firebasePath: 'messages/room1', users: { '9502': 'kitcat', '9325': 'pagal' }, label: 'CHANNEL_1', isRoom2: false };
 
   // Auto show auth जेव्हा room param असेल
   useEffect(() => {
